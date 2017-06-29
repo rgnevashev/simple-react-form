@@ -25,6 +25,10 @@
     "form",
     "react"
   ],
+  "peerDependencies": {
+    "react": ">=15.3.0",
+    "react-dom": ">=15.3.0"
+  },
   "dependencies": {
     "dot-object": "^1.5.1",
     "lodash": "^4.17.2"
@@ -46,10 +50,6 @@
     "react-addons-test-utils": "^15.3.2",
     "react-dom": ">=15.0.0",
     "standard": "*"
-  },
-  "peerDependencies": {
-    "react": ">=15.0.0",
-    "react-dom": ">=15.0.0"
   },
   "jest": {
     "testPathIgnorePatterns": [
