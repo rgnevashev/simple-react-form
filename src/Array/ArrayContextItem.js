@@ -26,14 +26,6 @@ export default class ArrayContextItem extends React.Component {
   }
 
   render () {
-    if (this.isRN()) {
-      const {View} = require('react-native')
-      return (
-        <View>
-          {this.props.children}
-        </View>
-      )
-    }
     return (
       <div>
         {this.props.children}

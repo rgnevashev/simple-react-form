@@ -4,7 +4,8 @@
     "transform-decorators-legacy",
     ["transform-runtime", {
       "polyfill": false,
-      "regenerator": true
+      "regenerator": true,
+      "helpers": true
     }]
   ]
 }
