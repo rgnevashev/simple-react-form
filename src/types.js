@@ -1,6 +1,7 @@
-export var Attributes = {}
 import isString from 'lodash/isString'
 import isEqual from 'lodash/isEqual'
+
+export var Attributes = {}
 
 export const registerType = function ({type, component}) {
   Attributes[type] = {name: type, component}

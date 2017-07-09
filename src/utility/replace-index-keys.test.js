@@ -13,4 +13,3 @@ test('Should not replace if the fieldName is a number', () => {
   const result = replaceIndexKeys(key)
   expect(result).toEqual(expected)
 })
-

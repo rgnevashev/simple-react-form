@@ -72,7 +72,6 @@ const childContextTypes = {
 }
 
 export default class ArrayComponent extends React.Component {
-
   getChildContext () {
     return {
       parentFieldName: this.props.fieldName
@@ -162,7 +161,6 @@ export default class ArrayComponent extends React.Component {
       </div>
     )
   }
-
 }
 
 ArrayComponent.propTypes = propTypes

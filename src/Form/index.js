@@ -193,7 +193,6 @@ const childContextTypes = {
 }
 
 export default class Form extends React.Component {
-
   constructor (props) {
     super(props)
     const state = props.state || props.doc || {}
@@ -317,8 +316,7 @@ export default class Form extends React.Component {
   submit () {
     const data = this.props.commitOnlyChanges ? this.state.changes : this.state.doc
     if (this.props.type === 'insert') {
-      const dot = DotObject.dot(this.state.doc)
-      const doc = DotObject.object(dot)
+      const doc = DotObject.object(DotObject.dot(this.state.doc))
       this.props.collection.insert(doc, this.getValidationOptions(), this.onCommit.bind(this))
     } else if (this.props.type === 'update') {
       const presentFields = getPresentFields(this.fields)
@@ -332,8 +330,9 @@ export default class Form extends React.Component {
         }
       }
     } else if (this.props.type === 'function') {
-      const doc = DotObject.object(DotObject.dot(data))
-      var isValid = true
+      const presentFields = getPresentFields(this.fields)
+      let doc = DotObject.object(DotObject.dot(cleanFields(DotObject.dot(data), presentFields)))
+      let isValid = true
       if (this.props.validate && this.getSchema()) {
         isValid = this.getSchema().namedContext(this.getValidationOptions().validationContext).validate(doc)
       }
@@ -341,9 +340,10 @@ export default class Form extends React.Component {
         if (!isFunction(this.props.onSubmit)) {
           throw new Error('You must pass a onSubmit function or set the form type to insert or update')
         }
-        const presentFields = getPresentFields(this.fields)
-        const cleanDoc = cleanFields(DotObject.dot(data), presentFields)
-        var success = this.props.onSubmit(DotObject.object(DotObject.dot(cleanDoc)))
+        if (data._id) {
+          doc = docToModifier(data, { keepArrays: this.props.keepArrays, fields: presentFields })
+        }
+        var success = this.props.onSubmit(doc)
         if (success === false) {
           this.onCommit('onSubmit error')
         } else {

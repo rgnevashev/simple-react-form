@@ -21,7 +21,6 @@ const childContextTypes = {
 }
 
 export default class ObjectComponent extends React.Component {
-
   getChildContext () {
     return {
       parentFieldName: this.props.fieldName
@@ -45,7 +44,6 @@ export default class ObjectComponent extends React.Component {
       </div>
     )
   }
-
 }
 
 ObjectComponent.propTypes = propTypes

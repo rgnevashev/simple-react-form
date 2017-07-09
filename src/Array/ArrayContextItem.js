@@ -11,7 +11,6 @@ const childContextTypes = {
 }
 
 export default class ArrayContextItem extends React.Component {
-
   getChildContext () {
     return {
       parentFieldName: `${this.props.fieldName}.${this.props.index}`

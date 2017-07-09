@@ -58,12 +58,10 @@ export const propTypes = {
 }
 
 export default class FieldType extends React.Component {
-
   constructor (props) {
     super(props)
     console.warn('Now you don\'t have to extend FieldType to create components')
   }
-
 }
 
 FieldType.propTypes = propTypes

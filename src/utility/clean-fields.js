@@ -17,7 +17,7 @@ export default function (doc, fields) {
         contains = true
       }
     })
-    if (contains) {
+    if (contains && key !== '_id') {
       newDoc[key] = val
     }
   })
