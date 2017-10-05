@@ -316,7 +316,7 @@ export const propTypes = {
   helpText: PropTypes.any, // HelpBlock
   labelText: PropTypes.any,
   placeholder: PropTypes.any, // FormControl
-  static: PropTypes.bool,
+  statical: PropTypes.bool,
   feedback: PropTypes.bool,
   noLabel: PropTypes.bool,
   changeOnKeyDown: PropTypes.bool
@@ -327,7 +327,7 @@ export const defaultProps = {
   srOnly: false,
   labelCol: 0,
   inputGroup: false,
-  static: false,
+  statical: false,
   feedback: false,
   noLabel: false,
   changeOnKeyDown: true
