@@ -27,6 +27,14 @@ const withOptions = (component) => {
           { label: allowedValue, value: allowedValue }
         ))
       }
+      if (options && options.length && options.map) {
+        options = options.map((option) => {
+          if (_.isString(option)) {
+            return { label: option, value: option }
+          }
+          return option
+        })
+      }
       if (this.props.createable) {
         const { value } = this.state
         if (value && value.length && value.forEach) {

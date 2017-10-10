@@ -30,7 +30,7 @@ export default class SelectField extends CommonTextField {
       (!this.props.async ? (this.props.passProps.multi ? event.map(item => item.value) : event && event.value) : event) :
       event.target.value
     this.setState({ value })
-    this.props.onChange(value)
+    this.props.onChange(this.props.singleValue && typeof value === 'object' ? value.value : value)
   }
 
   loadOptions(input, done) {
@@ -110,11 +110,13 @@ SelectField.propTypes = {
   async: PropTypes.bool,
   createable: PropTypes.bool,
   selectable: PropTypes.bool,
-  method: PropTypes.string
+  method: PropTypes.string,
+  singleValue: PropTypes.bool
 }
 SelectField.defaultProps = {
   ...SelectField.defaultProps,
   async: false,
   createable: false,
-  selectable: false
+  selectable: false,
+  singleValue: false
 }
