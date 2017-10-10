@@ -1,6 +1,6 @@
 {
   "name": "react-simpl-form",
-  "version": "1.9.10",
+  "version": "1.9.11",
   "license": "MIT",
   "author": "Roman Karmatsky <rgnevashev@gmail.com>",
   "description": "A library to make reusable form components in React",
