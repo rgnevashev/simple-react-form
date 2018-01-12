@@ -55,8 +55,8 @@ export default class ArrayField extends ArrayComponent {
 ArrayField.propTypes = {
   ...propTypes,
   ...ArrayComponent.propTypes,
-  btnAddText: React.PropTypes.string,
-  btnRemoveText: React.PropTypes.string,
+  btnAddText: PropTypes.string,
+  btnRemoveText: PropTypes.string,
   parentClassName: PropTypes.string,
   childrenClassName: PropTypes.string,
   renderChildrenItem: PropTypes.func,

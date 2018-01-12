@@ -30,7 +30,7 @@ export default class DatetimeField extends React.Component {
   }
 
   convertToTz(date, timezone) {
-    return date && timezone ? moment(date).tz(timezone) : date
+    return date && timezone ? moment(date).tz(timezone) : moment(date)
   }
 
   render() {
