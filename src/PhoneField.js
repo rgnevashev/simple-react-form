@@ -37,6 +37,7 @@ export default class PhoneField extends React.Component {
           country={this.props.country.toUpperCase()}
           className="form-control"
           onChange={(phone, country) => this.onChange(phone, country)}
+		  placeholder={this.props.placeholder}
           {...this.props.passProps}
         />
       </WrapperField>
