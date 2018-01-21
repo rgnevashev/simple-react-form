@@ -2,12 +2,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DateTime from 'react-datetime'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 import { propTypes, defaultProps } from './propTypes.js'
 import WrapperField from './WrapperField.js'
 
-export default class DatetimeField extends React.Component {
+class DatetimeField extends React.Component {
   constructor(props) {
     super(props)
 
@@ -24,13 +24,14 @@ export default class DatetimeField extends React.Component {
   }
 
   onChange(date) {
-    const value = _.isString(date) ? moment(date).toDate() : date.toDate()
+    const value = moment(date).isValid() ? moment(date).toDate() : date
     this.setState({ value })
     this.props.onChange(value)
   }
 
   convertToTz(date, timezone) {
-    return date && timezone ? moment(date).tz(timezone) : moment(date)
+    const value = typeof date === 'string' ? date : moment.tz(date, timezone)
+    return value
   }
 
   render() {
@@ -40,7 +41,7 @@ export default class DatetimeField extends React.Component {
     return (
       <WrapperField {...props}>
         <DateTime
-          defaultValue={this.convertToTz(value, props.timezone)}
+          //defaultValue={this.convertToTz(value, props.timezone)}
           dateFormat={props.dateFormat}
           timeFormat={props.timeFormat}
           timeConstraints={props.timeConstraints}
@@ -76,3 +77,5 @@ DatetimeField.defaultProps = {
     }
   }
 }
+
+export default DatetimeField

@@ -28,6 +28,7 @@
     "classnames": "^2.2.5",
     "dot-object": "^1.7.0",
     "lodash": "^4.17.4",
+    "moment-timezone": "^0.5.14",
     "mongo-object": "^0.1.2",
     "react-autosize-textarea": "^3.0.1",
     "react-bootstrap": "^0.32.0",
