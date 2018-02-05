@@ -31,7 +31,7 @@
     "moment-timezone": "^0.5.14",
     "mongo-object": "^0.1.2",
     "react-autosize-textarea": "^3.0.1",
-    "react-bootstrap": "^0.32.0",
+    "react-bootstrap": "^0.32.1",
     "react-color": "^2.13.8",
     "react-date-range": "^0.9.4",
     "react-datetime": "^2.11.1",
