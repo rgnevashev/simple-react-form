@@ -6,8 +6,7 @@ import { propTypes, defaultProps } from './propTypes.js'
 import withOptions from './withOptions.js'
 import WrapperField from './WrapperField.js'
 
-@withOptions
-export default class CheckboxesField extends React.Component {
+class CheckboxesField extends React.Component {
   constructor(props) {
     super(props)
 
@@ -61,9 +60,7 @@ export default class CheckboxesField extends React.Component {
 
     return (
       <WrapperField {...props}>
-        <div className={props.parentClassName}>
-          {this.getOptions().map((option, index) => this.renderOption({ props, value, option, index }))}
-        </div>
+        <div className={props.parentClassName}>{this.getOptions().map((option, index) => this.renderOption({ props, value, option, index }))}</div>
       </WrapperField>
     )
   }
@@ -78,3 +75,5 @@ CheckboxesField.propTypes = {
 CheckboxesField.defaultProps = {
   ...defaultProps
 }
+
+export default withOptions(CheckboxesField)

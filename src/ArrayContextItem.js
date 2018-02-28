@@ -2,18 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class ArrayContextItem extends React.Component {
-  getChildContext () {
+  getChildContext() {
     return {
       parentFieldName: `${this.props.fieldName}.${this.props.index}`
     }
   }
 
-  render () {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    )
+  render() {
+    return <div>{this.props.children}</div>
   }
 }
 

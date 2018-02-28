@@ -31,11 +31,7 @@ export default class TagsInputField extends React.Component {
 
     return (
       <WrapperField {...props}>
-        <TagsInput
-          value={value || []}
-          onChange={val => this.onChange(val)}
-          {...props.passProps}
-        />
+        <TagsInput value={value || []} onChange={val => this.onChange(val)} {...props.passProps} />
       </WrapperField>
     )
   }

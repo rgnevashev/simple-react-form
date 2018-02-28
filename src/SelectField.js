@@ -1,3 +1,5 @@
+/* global Meteor */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import FormControl from 'react-bootstrap/lib/FormControl'
@@ -12,8 +14,7 @@ import withOptions from './withOptions.js'
 import CommonTextField from './CommonTextField.js'
 import WrapperField from './WrapperField.js'
 
-@withOptions
-export default class SelectField extends CommonTextField {
+class SelectField extends CommonTextField {
   constructor(props) {
     super(props)
 
@@ -26,21 +27,22 @@ export default class SelectField extends CommonTextField {
   }
 
   onChange(event) {
-    const value = (this.props.selectable || this.props.async || this.props.createable) ?
-      (!this.props.async ? (this.props.passProps.multi ? event.map(item => item.value) : event && event.value) : event) :
-      event.target.value
+    const value =
+      this.props.selectable || this.props.async || this.props.createable
+        ? !this.props.async ? (this.props.passProps.multi ? event.map(item => item.value) : event && event.value) : event
+        : event.target.value
     this.setState({ value })
     this.props.onChange(this.props.singleValue && typeof value === 'object' ? value.value : value)
   }
 
   loadOptions(input, done) {
-    Meteor.call(this.props.method, input, (err, options) => (
+    Meteor.call(this.props.method, input, (err, options) =>
       done(err, {
         options,
         complete: false,
         cache: false
       })
-    ))
+    )
   }
 
   render() {
@@ -49,7 +51,7 @@ export default class SelectField extends CommonTextField {
 
     return (
       <WrapperField {...props}>
-        {props.selectable ?
+        {props.selectable ? (
           <Select
             value={value}
             disabled={props.disabled}
@@ -57,50 +59,55 @@ export default class SelectField extends CommonTextField {
             options={this.getOptions()}
             onChange={changes => this.onChange(changes)}
             {...props.passProps}
-          /> :
-          props.async && props.createable ?
-            <AsyncCreatable
-              value={value}
-              disabled={props.disabled}
-              placeholder={props.placeholder}
-              options={this.getOptions()}
-              onChange={changes => this.onChange(changes)}
-              loadOptions={(input, dode) => this.loadOptions(input, dode)}
-              {...props.passProps}
-            /> :
-            props.async ?
-              <Async
-                value={value}
-                disabled={props.disabled}
-                placeholder={props.placeholder}
-                options={this.getOptions()}
-                onChange={changes => this.onChange(changes)}
-                loadOptions={(input, dode) => this.loadOptions(input, dode)}
-                {...props.passProps}
-              /> :
-              props.createable ?
-                <Creatable
-                  value={value}
-                  disabled={props.disabled}
-                  placeholder={props.placeholder}
-                  options={this.getOptions()}
-                  onChange={changes => this.onChange(changes)}
-                  {...props.passProps}
-                /> :
-                <FormControl
-                  value={props.value}
-                  type={props.fieldType}
-                  placeholder={props.placeholder}
-                  disabled={props.disabled}
-                  componentClass={props.componentClass}
-                  onChange={event => this.onChange(event)}
-                  onKeyDown={event => this.onKeyDown(event)}
-                  onBlur={() => props.onChange(value)}
-                  {...props.passProps}
-                >
-                  {this.getOptions().map(item => <option key={`${item.label}-${item.value}`} value={item.value}>{item.label}</option>)}
-                </FormControl>
-        }
+          />
+        ) : props.async && props.createable ? (
+          <AsyncCreatable
+            value={value}
+            disabled={props.disabled}
+            placeholder={props.placeholder}
+            options={this.getOptions()}
+            onChange={changes => this.onChange(changes)}
+            loadOptions={(input, dode) => this.loadOptions(input, dode)}
+            {...props.passProps}
+          />
+        ) : props.async ? (
+          <Async
+            value={value}
+            disabled={props.disabled}
+            placeholder={props.placeholder}
+            options={this.getOptions()}
+            onChange={changes => this.onChange(changes)}
+            loadOptions={(input, dode) => this.loadOptions(input, dode)}
+            {...props.passProps}
+          />
+        ) : props.createable ? (
+          <Creatable
+            value={value}
+            disabled={props.disabled}
+            placeholder={props.placeholder}
+            options={this.getOptions()}
+            onChange={changes => this.onChange(changes)}
+            {...props.passProps}
+          />
+        ) : (
+          <FormControl
+            value={props.value}
+            type={props.fieldType}
+            placeholder={props.placeholder}
+            disabled={props.disabled}
+            componentClass={props.componentClass}
+            onChange={event => this.onChange(event)}
+            onKeyDown={event => this.onKeyDown(event)}
+            onBlur={() => props.onChange(value)}
+            {...props.passProps}
+          >
+            {this.getOptions().map(item => (
+              <option key={`${item.label}-${item.value}`} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </FormControl>
+        )}
       </WrapperField>
     )
   }
@@ -120,3 +127,5 @@ SelectField.defaultProps = {
   selectable: false,
   singleValue: false
 }
+
+export default withOptions(SelectField)

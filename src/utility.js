@@ -8,12 +8,12 @@ import union from 'lodash/union'
 import includes from 'lodash/includes'
 import filter from 'lodash/filter'
 
-const isBasicObject = function (obj) {
+const isBasicObject = function(obj) {
   return isObject(obj) && Object.getPrototypeOf(obj) === Object.prototype
 }
 
-const isNullUndefinedOrEmptyString = function (val) {
-  return (val === void 0 || val === null || (typeof val === 'string' && val.length === 0))
+const isNullUndefinedOrEmptyString = function(val) {
+  return val === void 0 || val === null || (typeof val === 'string' && val.length === 0)
 }
 
 export const cleanFields = (doc, fields) => {
@@ -82,8 +82,8 @@ export const reportNulls = (flatDoc, keepEmptyStrings) => {
   return nulls
 }
 
-export const getPresentFields = (fields) => {
-  return filter(fields, (field) => {
+export const getPresentFields = fields => {
+  return filter(fields, field => {
     const props = field.component.props
     return !props.disabled
   }).map(field => field.field)

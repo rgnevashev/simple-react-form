@@ -44,6 +44,7 @@ class ArrayComponent extends React.Component {
     const value = this.props.value || []
     if (this.props.autoAddItem && !this.props.disabled && value.length === 0) {
       value.push({})
+      this.props.onChange(value)
     }
     return value.map((item, index) => {
       const children = this.getChildrenComponents(item, index)
@@ -55,13 +56,13 @@ class ArrayComponent extends React.Component {
     return (
       <div style={{ marginTop: 20, marginBottom: 20, padding: 20 }} key={`${this.props.fieldName}.${index}`}>
         {this.renderChildrenItemWithContext({ index, children })}
-        {this.props.showRemoveButton ?
+        {this.props.showRemoveButton ? (
           <div style={{ marginTop: 10, textAlign: 'right' }}>
             <button type="button" onClick={() => this.removeItem(index)}>
               {this.props.removeLabel}
             </button>
-          </div> : null
-        }
+          </div>
+        ) : null}
       </div>
     )
   }
@@ -77,16 +78,18 @@ class ArrayComponent extends React.Component {
   render() {
     return (
       <div style={{ marginTop: 20 }}>
-        <div><b>{this.props.label}</b></div>
+        <div>
+          <b>{this.props.label}</b>
+        </div>
         <div style={{ color: 'red' }}>{this.props.errorMessage}</div>
         {this.renderChildren()}
-        {this.props.showAddButton ?
+        {this.props.showAddButton ? (
           <div style={{ marginTop: 10 }}>
             <button type="button" onClick={() => this.addItem()}>
               {this.props.addLabel}
             </button>
-          </div> : null
-        }
+          </div>
+        ) : null}
       </div>
     )
   }

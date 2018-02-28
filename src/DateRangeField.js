@@ -76,7 +76,7 @@ const defaultRanges = {
 const DateRangeToggle = ({ onClick, children }) => (
   <a
     href="#"
-    onClick={(event) => {
+    onClick={event => {
       event.preventDefault()
       onClick(event)
     }}
@@ -129,24 +129,17 @@ export default class DateRangeField extends React.Component {
       <WrapperField {...this.props}>
         <Dropdown id={fieldName} {...dropdownProps}>
           <DateRangeToggle bsRole="toggle">
-            <FormControl
-              type="text"
-              componentClass="input"
-              value={this.valueFormatted(value)}
-              placeholder={placeholder}
-              disabled={disabled}
-              {...inputProps}
-            />
+            <FormControl type="text" componentClass="input" value={this.valueFormatted(value)} placeholder={placeholder} disabled={disabled} {...inputProps} />
           </DateRangeToggle>
           <Dropdown.Menu style={{ maxWidth: 'none', padding: 0 }}>
             <DateRange
-              startDate={(value && moment(value.startDate))}
-              endDate={(value && moment(value.endDate))}
+              startDate={value && moment(value.startDate)}
+              endDate={value && moment(value.endDate)}
               onInit={range => this.onChange(range)}
               onChange={range => this.onChange(range)}
               ranges={_.pick(defaultRanges, rangeKeys)}
               theme={{
-                PredefinedRanges : { padding: '10px' },
+                PredefinedRanges: { padding: '10px' },
                 PredefinedRangesItem: { padding: '5px 8px' }
               }}
               {...passProps}

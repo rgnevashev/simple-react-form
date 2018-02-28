@@ -36,13 +36,13 @@ export default class CheckboxField extends React.Component {
 
     return (
       <WrapperField {...props}>
-        {props.toggle ?
+        {props.toggle ? (
           <label className="checkbox" style={{ display: 'flex', alignItems: 'center' }}>
-            {props.labelOff &&
+            {props.labelOff && (
               <span className={classNames('labelOff', { 'not-active': !!value })} style={{ marginRight: 5 }}>
                 {props.labelOff}
               </span>
-            }
+            )}
             <Toggle
               checked={!!value}
               disabled={props.disabled}
@@ -54,12 +54,13 @@ export default class CheckboxField extends React.Component {
               {...props.passProps}
             />
             {props.label && !props.labelOn && <span style={{ marginLeft: 5 }}>{props.label}</span>}
-            {props.labelOn &&
+            {props.labelOn && (
               <span className={classNames('labelOn', { 'not-active': !value })} style={{ marginLeft: 5 }}>
                 {props.labelOn}
               </span>
-            }
-          </label> :
+            )}
+          </label>
+        ) : (
           <Checkbox
             defaultChecked={value}
             disabled={props.disabled}
@@ -69,7 +70,7 @@ export default class CheckboxField extends React.Component {
           >
             {props.label}
           </Checkbox>
-        }
+        )}
       </WrapperField>
     )
   }

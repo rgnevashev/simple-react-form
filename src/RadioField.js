@@ -6,8 +6,7 @@ import { propTypes, defaultProps } from './propTypes.js'
 import withOptions from './withOptions.js'
 import WrapperField from './WrapperField.js'
 
-@withOptions
-export default class RadioField extends React.Component {
+class RadioField extends React.Component {
   constructor(props) {
     super(props)
 
@@ -55,9 +54,7 @@ export default class RadioField extends React.Component {
 
     return (
       <WrapperField {...props}>
-        <div className={props.parentClassName}>
-          {this.getOptions().map((option, index) => this.renderOption({ props, value, option, index }))}
-        </div>
+        <div className={props.parentClassName}>{this.getOptions().map((option, index) => this.renderOption({ props, value, option, index }))}</div>
       </WrapperField>
     )
   }
@@ -72,3 +69,5 @@ RadioField.propTypes = {
 RadioField.defaultProps = {
   ...defaultProps
 }
+
+export default withOptions(RadioField)

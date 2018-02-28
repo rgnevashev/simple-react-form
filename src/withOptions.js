@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'underscore'
 
-const withOptions = (component) => {
+const withOptions = component => {
   component.propTypes = {
     ...component.propTypes,
     options: PropTypes.any
   }
 
   return class extends component {
-
     getOptions() {
       let options = []
       if (this.props.options) {
@@ -23,12 +22,10 @@ const withOptions = (component) => {
         if (typeof allowedValues === 'function') {
           allowedValues = this.props.fieldSchema.allowedValues()
         }
-        options = allowedValues.map(allowedValue => (
-          { label: allowedValue, value: allowedValue }
-        ))
+        options = allowedValues.map(allowedValue => ({ label: allowedValue, value: allowedValue }))
       }
       if (options && options.length && options.map) {
-        options = options.map((option) => {
+        options = options.map(option => {
           if (_.isString(option)) {
             return { label: option, value: option }
           }
@@ -38,7 +35,7 @@ const withOptions = (component) => {
       if (this.props.createable) {
         const { value } = this.state
         if (value && value.length && value.forEach) {
-          value.forEach((val) => {
+          value.forEach(val => {
             if (_.isString(val)) {
               if (!_.contains(_.pluck(options || [], 'value'), val)) {
                 options.push({ label: val, value: val })

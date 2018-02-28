@@ -30,11 +30,7 @@ export default class CommonField extends React.Component {
       onChange: (...args) => this.onChange(this.props.children.props.onChange(...args))
     })
 
-    return (
-      <WrapperField {...this.props}>
-        {children}
-      </WrapperField>
-    )
+    return <WrapperField {...this.props}>{children}</WrapperField>
   }
 }
 

@@ -11,9 +11,7 @@ export default class ObjectField extends ObjectComponent {
 
     return (
       <WrapperField {...props}>
-        <div className={props.parentClassName}>
-          {this.getChildrenComponents()}
-        </div>
+        <div className={props.parentClassName}>{this.getChildrenComponents()}</div>
       </WrapperField>
     )
   }

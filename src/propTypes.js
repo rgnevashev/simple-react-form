@@ -246,8 +246,8 @@ export const objectComponentPropTypes = {
   ...fieldTypePropTypes,
 
   /**
-  * Each item component
-  */
+   * Each item component
+   */
   children: PropTypes.any
 }
 

@@ -80,7 +80,7 @@ class Form extends React.Component {
   }
 
   callChildFields({ method, input }) {
-    this.fields.map((field) => {
+    this.fields.map(field => {
       if (isFunction(field.component[method])) {
         field.component[method](input)
       }
@@ -152,7 +152,9 @@ class Form extends React.Component {
       let doc = DotObject.object(DotObject.dot(cleanFields(DotObject.dot(data), presentFields)))
       let isValid = true
       if (this.props.validate && this.getSchema()) {
-        isValid = this.getSchema().namedContext(this.getValidationOptions().validationContext).validate(doc)
+        isValid = this.getSchema()
+          .namedContext(this.getValidationOptions().validationContext)
+          .validate(doc)
       }
       if (isValid) {
         if (!isFunction(this.props.onSubmit)) {
@@ -193,7 +195,7 @@ class Form extends React.Component {
   setErrorsWithContext(context) {
     const validationErrors = context.validationErrors ? context.validationErrors() : context.invalidKeys()
     const errorMessages = {}
-    validationErrors.map((field) => {
+    validationErrors.map(field => {
       errorMessages[field.name] = context.keyErrorMessage(field.name)
     })
 
@@ -217,7 +219,7 @@ class Form extends React.Component {
   handleServerError(error) {
     const errors = JSON.parse(error.details)
     const errorMessages = {}
-    errors.forEach((fieldError) => {
+    errors.forEach(fieldError => {
       errorMessages[fieldError.name] = this.getSchema().messageForError(fieldError.type, fieldError.name, null, fieldError.value)
     })
     if (this.props.logErrors) {
@@ -259,11 +261,7 @@ class Form extends React.Component {
         </form>
       )
     }
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    )
+    return <div>{this.props.children}</div>
   }
 }
 

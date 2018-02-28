@@ -81,12 +81,12 @@ export default class ColorField extends React.Component {
           <div style={styles.swatch} onClick={() => this.handleClick()}>
             <div style={styles.color} />
           </div>
-          {displayColorPicker &&
+          {displayColorPicker && (
             <div style={styles.popover}>
               <div style={styles.cover} onClick={() => this.handleClose()} />
               {React.createElement(ColorPickers[this.props.component], props)}
             </div>
-          }
+          )}
         </div>
       </WrapperField>
     )
