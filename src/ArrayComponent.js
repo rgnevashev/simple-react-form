@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ArrayContextItem from './ArrayContextItem'
 import isArray from 'lodash/isArray'
 import without from 'lodash/without'
 
+import ArrayContextItem from './ArrayContextItem'
 import { arrayComponentPropTypes } from './propTypes'
 
 class ArrayComponent extends React.Component {
@@ -14,7 +14,7 @@ class ArrayComponent extends React.Component {
   }
 
   addItem(itemValue = {}) {
-    let newArray = this.props.value
+    let newArray = Array.from(this.props.value || [])
     if (isArray(newArray)) {
       newArray.push(itemValue)
     } else {
@@ -25,7 +25,7 @@ class ArrayComponent extends React.Component {
   }
 
   removeItem(index) {
-    const value = this.props.value || []
+    const value = Array.from(this.props.value || [])
     const newArray = without(value, value[index])
     this.props.onChange(newArray)
   }
@@ -41,7 +41,7 @@ class ArrayComponent extends React.Component {
   }
 
   renderChildren() {
-    const value = this.props.value || []
+    const value = Array.from(this.props.value || [])
     if (this.props.autoAddItem && !this.props.disabled && value.length === 0) {
       value.push({})
       this.props.onChange(value)
